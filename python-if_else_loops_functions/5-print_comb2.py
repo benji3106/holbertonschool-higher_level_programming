@@ -2,6 +2,6 @@
 
 for loop in range(100):
     if loop < 99:
-        print("{}".format(loop), end=', ')
+        print("{:02d}".format(loop), end=', ')
     else:
-        print("{}".format(loop), end='\n')
+        print("{:02d}".format(loop), end='\n')
