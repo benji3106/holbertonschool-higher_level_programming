@@ -4,7 +4,6 @@
 
 def matrix_divided(matrix, div):
     """Divide all elements of a matrix by div and round to 2 decimals."""
-    # le reste du code...
 
     if (not isinstance(matrix, list)
             or matrix == []
