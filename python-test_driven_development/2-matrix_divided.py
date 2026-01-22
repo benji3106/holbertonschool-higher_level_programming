@@ -1,23 +1,11 @@
 #!/usr/bin/python3
-
-"""Divides all elements of a matrix by a given divisor.
-
-Args:
-    matrix (list of lists of int/float): The matrix to be divided.
-    div (int/float): The divisor.
-
-Returns:
-    list of lists of float: A new matrix with the divided values.
-
-Raises:
-    TypeError: If the matrix is not a list of lists of integers/floats,
-        or if the rows are not of the same size,
-        or if div is not a number.
-    ZeroDivisionError: If div is zero.
-"""
+"""Module that divides all elements of a matrix."""
 
 
 def matrix_divided(matrix, div):
+    """Divide all elements of a matrix by div and round to 2 decimals."""
+    # le reste du code...
+
     if (not isinstance(matrix, list)
             or matrix == []
             or not all(isinstance(row, list) for row in matrix)):
