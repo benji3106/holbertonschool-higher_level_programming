@@ -34,13 +34,10 @@ Sin aliud quid voles, postea.
 
 Quae animi affectio suum cuique tribuens atque hanc, quam dico.
 
-Not a string:
 >>> text_indentation(42)
 Traceback (most recent call last):
 TypeError: text must be a string
 
-
-Missing argument:
 >>> text_indentation()  # doctest: +ELLIPSIS
 Traceback (most recent call last):
 TypeError: ...
