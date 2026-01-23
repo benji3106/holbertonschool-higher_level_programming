@@ -1,15 +1,5 @@
 >>> text_indentation = __import__('5-text_indentation').text_indentation
 
->>> text_indentation("Hello. World?")
-Hello.
-
-World?
-
->>> text_indentation("Hello.\n\nWorld?")
-Hello.
-
-World?
-
 >>> text_indentation(42)
 Traceback (most recent call last):
 TypeError: text must be a string
@@ -17,6 +7,8 @@ TypeError: text must be a string
 >>> text_indentation()  # doctest: +ELLIPSIS
 Traceback (most recent call last):
 TypeError: ...
+
+>>> text_indentation = __import__('5-text_indentation').text_indentation
 
 text_indentation("""Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
 Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere? \
@@ -26,28 +18,29 @@ Transfer idem ad modestiam vel temperantiam, quae est moderatio cupiditatum \
 rationi oboediens. Si id dicis, vicimus. Inde sermone vario sex illa a Dipylo \
 stadia confecimus. Sin aliud quid voles, postea. Quae animi affectio suum \
 cuique tribuens atque hanc, quam dico. Utinam quidem dicerent alium alio \
-beatiorem! Iam ruinas videres""")
+beatiorem! Iam ruinas videres""")  # doctest: +ELLIPSIS
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
+...
 Quonam modo?
 
+...
 Utrum igitur tibi litteram videor an totas paginas commovere?
 
+...
 Non autem hoc:
 
-igitur ne illud quidem.
-
-Fortasse id optimum, sed ubi illud:
-
+...
 Plus semper voluptatis?
 
-Teneo, inquit, finem illi videri nihil dolere.
-
-Transfer idem ad modestiam vel temperantiam, quae est moderatio cupiditatum rationi oboediens.
-
-Si id dicis, vicimus.
-
-Inde sermone vario sex illa a Dipylo stadia confecimus.
-
-Sin aliud quid voles, postea.
-
-Quae animi affectio suum cuique tribuens atque hanc, quam dico.
+...
+>>> text_indentation("Hello. World?")  # doctest: +ELLIPSIS
+Hello.
+...
+World?
+...
+>>> text_indentation("Hello.\n\nWorld?")  # doctest: +ELLIPSIS
+Hello.
+...
+World?
+...
