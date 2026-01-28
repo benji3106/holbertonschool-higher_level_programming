@@ -1,21 +1,24 @@
 #!/usr/bin/python3
+"""Defines a Square class."""
+
+
 class Square:
     """A class that defines a square."""
 
     def __init__(self, size=0, position=(0, 0)):
-        """Initialize the square with size and position."""
+        """Initialize a Square."""
         self.size = size
         self.position = position
 
     @property
     def size(self):
-        """Retrieve the size."""
+        """Return the size of the square."""
         return self.__size
 
     @size.setter
     def size(self, value):
-        """Set the size with validation."""
-        if not isinstance(value, int):
+        """Set the size of the square."""
+        if type(value) is not int:
             raise TypeError("size must be an integer")
         if value < 0:
             raise ValueError("size must be >= 0")
@@ -23,17 +26,17 @@ class Square:
 
     @property
     def position(self):
-        """Retrieve the position."""
+        """Return the position of the square."""
         return self.__position
 
     @position.setter
     def position(self, value):
-        """Set the position with validation."""
+        """Set the position of the square."""
         if (
-            not isinstance(value, tuple) or
+            type(value) is not tuple or
             len(value) != 2 or
-            not isinstance(value[0], int) or
-            not isinstance(value[1], int) or
+            type(value[0]) is not int or
+            type(value[1]) is not int or
             value[0] < 0 or
             value[1] < 0
         ):
@@ -41,7 +44,7 @@ class Square:
         self.__position = value
 
     def area(self):
-        """Return the area."""
+        """Return the area of the square."""
         return self.__size ** 2
 
     def my_print(self):
@@ -50,10 +53,8 @@ class Square:
             print()
             return
 
-        # Print vertical offset
         for _ in range(self.__position[1]):
             print()
 
-        # Print square
         for _ in range(self.__size):
             print(" " * self.__position[0] + "#" * self.__size)
