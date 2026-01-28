@@ -1,52 +1,37 @@
 #!/usr/bin/python3
-class Square:
-    """A class that defines a square with a private size attribute."""
-    def __init__(self, size=0):
-        """Initialize the square with a given size.
+"""Defines a Square class."""
 
-        Args:
-            size (int): The size of the square.
-        """
-        self.size = size  # Use the property setter for validation
+
+class Square:
+    """A class that defines a square."""
+
+    def __init__(self, size=0):
+        """Initialize a Square."""
+        self.size = size
 
     @property
     def size(self):
-        """Get the size of the square.
-
-        Returns:
-            int: The size of the square.
-        """
+        """Return the size of the square."""
         return self.__size
 
     @size.setter
     def size(self, value):
-        """Set the size of the square with validation.
-
-        Args:
-            value (int): The new size of the square.
-
-        Raises:
-            TypeError: If size is not an integer.
-            ValueError: If size is less than 0.
-        """
-        if not isinstance(value, int):
+        """Set the size of the square."""
+        if type(value) is not int:
             raise TypeError("size must be an integer")
         if value < 0:
             raise ValueError("size must be >= 0")
         self.__size = value
 
     def area(self):
-        """Calculate the area of the square.
-
-        Returns:
-            int: The area of the square.
-        """
+        """Return the area of the square."""
         return self.__size ** 2
-    
+
     def my_print(self):
-        """Print the square using the '#' character."""
+        """Print the square using # characters."""
         if self.__size == 0:
-            print("")
+            print()
             return
+
         for _ in range(self.__size):
             print("#" * self.__size)
