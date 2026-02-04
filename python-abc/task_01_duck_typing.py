@@ -63,10 +63,6 @@ class Rectangle(Shape):
     def __init__(self, width, height):
         """
         Initialize the rectangle with width and height.
-
-        Args:
-            width (int or float): width of the rectangle
-            height (int or float): height of the rectangle
         """
         self.width = width
         self.height = height
@@ -87,17 +83,6 @@ class Rectangle(Shape):
 def shape_info(shape):
     """
     Prints the area and perimeter of a shape using duck typing.
-
-    Args:
-        shape: any object with area() and perimeter() methods
     """
     print("Area:", shape.area())
     print("Perimeter:", shape.perimeter())
-
-
-if __name__ == "__main__":
-    circle = Circle(5)
-    rectangle = Rectangle(4, 3)
-
-    shape_info(circle)
-    shape_info(rectangle)
