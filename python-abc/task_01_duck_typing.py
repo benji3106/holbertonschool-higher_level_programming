@@ -37,8 +37,6 @@ class Circle(Shape):
         """
         Initialize the circle with a radius.
         """
-        if radius < 0:
-            raise ValueError("radius must be >= 0")
         self.radius = radius
 
     def area(self):
@@ -63,8 +61,6 @@ class Rectangle(Shape):
         """
         Initialize the rectangle with width and height.
         """
-        if width < 0 or height < 0:
-            raise ValueError("width and height must be >= 0")
         self.width = width
         self.height = height
 
