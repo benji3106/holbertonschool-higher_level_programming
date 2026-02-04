@@ -1,7 +1,6 @@
 >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 >>> bg = BaseGeometry()
 
-
 >>> bg.area()
 Traceback (most recent call last):
 Exception: area() is not implemented
@@ -79,3 +78,12 @@ TypeError: nan must be an integer
 Traceback (most recent call last):
 ...
 ValueError: min int must be greater than 0
+
+>>> bg.integer_validator("one", 1)
+
+>>> bg.integer_validator("big", 10**100)
+
+>>> bg.integer_validator("width", 5)
+>>> bg.area()
+Traceback (most recent call last):
+Exception: area() is not implemented
