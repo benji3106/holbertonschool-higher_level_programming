@@ -33,13 +33,12 @@ class Circle(Shape):
     Class that defines a Circle, subclass of Shape.
     """
 
-    def __init__(self, radius):
+    def __init__(self, radius=0):
         """
         Initialize the circle with a radius.
-
-        Args:
-            radius (int or float): radius of the circle
         """
+        if radius < 0:
+            raise ValueError("radius must be >= 0")
         self.radius = radius
 
     def area(self):
@@ -64,6 +63,8 @@ class Rectangle(Shape):
         """
         Initialize the rectangle with width and height.
         """
+        if width < 0 or height < 0:
+            raise ValueError("width and height must be >= 0")
         self.width = width
         self.height = height
 
