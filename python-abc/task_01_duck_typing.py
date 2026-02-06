@@ -37,6 +37,8 @@ class Circle(Shape):
         """
         Initialize the circle with a radius.
         """
+        if radius < 0:
+            raise ValueError("radius must be >= 0")
         self.radius = radius
 
     def area(self):
