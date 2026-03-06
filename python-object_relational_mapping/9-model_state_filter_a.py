@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Script that lists all State objects that contain the letter a from the database."""
+"""Script that lists all State objects that contain the letter a."""
 
 import sys
 from sqlalchemy import create_engine
@@ -24,7 +24,7 @@ if __name__ == "__main__":
         session.query(State)
         .filter(State.name.like("%a%"))
         .order_by(State.id)
-		.all()
+        .all()
     )
 
     for state in states:
