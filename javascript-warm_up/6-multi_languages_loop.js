@@ -1,9 +1,11 @@
 #!/usr/bin/node
 
-const lines = [
+const myArray = [
   'C is fun',
   'Python is cool',
   'JavaScript is amazing'
 ];
 
-console.log(lines.join('\n'));
+for (let i = 0; i < myArray.length; i++) {
+  console.log(myArray[i]);
+}
