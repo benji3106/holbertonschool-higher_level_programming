@@ -20,9 +20,9 @@ def contact():
 
 @app.route('/items')
 def items():
-    with open('./items.json', 'r') as f:
-        data = json.load(f)
-    return render_template('items.html', items=data.get('items', []))
+    with open('items.json') as f:
+        items = json.load(f)
+    return render_template('items.html', items=items.get("items"))
 
 
 if __name__ == '__main__':
