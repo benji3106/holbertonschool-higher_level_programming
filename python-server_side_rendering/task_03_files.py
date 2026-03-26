@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+"""Flask app to display products from JSON or CSV"""
+
 from flask import Flask, render_template, request
 import json
 import csv
@@ -5,66 +8,85 @@ import csv
 app = Flask(__name__)
 
 
-@app.route('/')
-def home():
-    return render_template('index.html')
+def read_json_file(filename):
+    """Read products from a JSON file"""
+    try:
+        with open(filename, 'r', encoding='utf-8') as file:
+            return json.load(file)
+    except Exception:
+        return []
 
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
+def read_csv_file(filename):
+    """Read products from a CSV file"""
+    products = []
 
+    try:
+        with open(filename, 'r', encoding='utf-8') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                products.append({
+                    "id": int(row["id"]),
+                    "name": row["name"],
+                    "category": row["category"],
+                    "price": float(row["price"])
+                })
+    except Exception:
+        return []
 
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
-
-
-@app.route('/items')
-def items():
-    with open('items.json') as f:
-        items = json.load(f)
-    return render_template('items.html', items=items.get("items"))
+    return products
 
 
 @app.route('/products')
 def products():
-    error = 0
+    """Display products from JSON or CSV with optional id filter"""
     source = request.args.get('source')
-    id = request.args.get('id')
+    product_id = request.args.get('id')
 
-    if (source != "json" and source != "csv"):
-        value = "Wrong source"
-        error = 1
+    if source == 'json':
+        products_list = read_json_file('products.json')
+    elif source == 'csv':
+        products_list = read_csv_file('products.csv')
     else:
-        if (source == "json"):
-            value = read_json()
-        else:
-            value = read_csv()
-        if id:
-            success = 0
-            for element in value:
-                if (id == str(element['id'])):
-                    success = 1
-                    value = [element]
-            if success == 0:
-                value = "Product not found"
-                error = 1
-    return render_template('product_display.html', value=value, error=error)
+        return render_template(
+            'product_display.html',
+            error="Wrong source",
+            products=[]
+        )
 
+    if product_id is not None:
+        try:
+            product_id = int(product_id)
+        except ValueError:
+            return render_template(
+                'product_display.html',
+                error="Product not found",
+                products=[]
+            )
 
-def read_csv():
-    with open('products.csv', newline='') as csvfile:
-        reader = csv.DictReader(csvfile)
-        result = list(reader)
-        print(result)
-    return result
+        filtered_products = []
+        for product in products_list:
+            if product.get("id") == product_id:
+                filtered_products.append(product)
 
+        if not filtered_products:
+            return render_template(
+                'product_display.html',
+                error="Product not found",
+                products=[]
+            )
 
-def read_json():
-    with open('products.json') as f:
-        value = json.load(f)
-    return value
+        return render_template(
+            'product_display.html',
+            products=filtered_products,
+            error=None
+        )
+
+    return render_template(
+        'product_display.html',
+        products=products_list,
+        error=None
+    )
 
 
 if __name__ == '__main__':
